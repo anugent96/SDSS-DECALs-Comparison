@@ -116,3 +116,25 @@ plt.hist(z_mag, bins=60, color='g', label='SDSS', alpha=0.7, histtype = 'stepfil
 plt.title('SDSS and DECaLS z-Magnitude Histograms')
 plt.legend()
 plt.show()
+
+# Exponential Radius Histograms
+plt.hist(rE_r1, bins=60, color='g', label='SDSS r', alpha=0.4, histtype = 'stepfilled')
+plt.hist(rE_z1, bins=60, color='b', label='SDSS z', alpha=0.5, histtype = 'stepfilled')
+plt.hist(rE_g1, bins=60, color='r', label='SDSS g', alpha=0.4, histtype = 'stepfilled')
+plt.hist(rE_1, bins=60, color='c', label='DECaLS', alpha=0.7)
+plt.yscale('log')
+plt.xscale('log')
+plt.legend()
+plt.title('SDSS and DECaLS Half Light Radius (EXP) Histograms')
+plt.show()
+
+# de Vaucouleurs Radius Histograms
+plt.hist(rD_r1, bins=60, color='g', label='SDSS r', alpha=0.4, histtype = 'stepfilled')
+plt.hist(rD_z1, bins=60, color='b', label='SDSS z', alpha=0.5, histtype = 'stepfilled')
+plt.hist(rD_g1, bins=60, color='r', label='SDSS g', alpha=0.4, histtype = 'stepfilled')
+plt.hist(rD_1, bins=60, color='c', label='DECaLS', alpha=0.7)
+plt.yscale('log')
+plt.xscale('log')
+plt.legend()
+plt.title('SDSS and DECaLS Half Light Radius (DEV) Histograms')
+plt.show()
