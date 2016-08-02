@@ -1,3 +1,8 @@
+"""
+Compares magnitude values between SDSS and DECaLS and creates a 2D-color-coded histogram for SDSS magnitude values vs the difference
+in magnitudes between SDSS and DECaLS. Looks at 3 SDSS files and 3 DECaLS files (same areas of sky).
+"""
+
 import sys
 image1 = str(sys.argv[1]) # SDSS csv file
 image2 = str(sys.argv[2]) # DECaLS tractor.fits file
