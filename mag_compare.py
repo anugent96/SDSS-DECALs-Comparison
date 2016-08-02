@@ -184,7 +184,7 @@ r_d_new = []
 z_d_new = []
 
 while i < len(idx)-1:
-    if d2d[i] <= 0.00027*u.degree:
+    if d2d[i] <= 0.00027*u.degree: # if objects in match are ~ 1 degree apart
         g_diff.append(g_mag_s[i] - g_mag_d[idx[i]])
         r_diff.append(r_mag_s[i] - r_mag_d[idx[i]])
         z_diff.append(z_mag_s[i] - z_mag_d[idx[i]])
