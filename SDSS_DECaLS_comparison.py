@@ -27,7 +27,7 @@ rD_z = df.values[:,7]
 rE_g = df.values[:,8]
 rE_r = df.values[:,9]
 rE_z = df.values[:,10]
-#Ellipticity based on filter
+#Ellipticity (b/a- semi-major, semi-minor axis) based on filter and type (DEV, EXP)
 deVAB_g = df.values[:,11]
 deVAB_r = df.values[:,12]
 deVAB_z = df.values[:,13]
@@ -63,17 +63,17 @@ eAB_z = [float(x) for x in expAB_z if x != 'expAB_z']
 
 # Getting ellipticity value from b/a
 from operator import truediv
-def ellipticity(x):
+def ellipticity(x): # converting b/a ellipticity to ellipticity constant
     e = truediv((1-x),(1+x))
     return e
 
-dev_e_g = [ellipticity(x) for x in dAB_g if x !=0]
-dev_e_r = [ellipticity(x) for x in dAB_r if x !=0]
-dev_e_z = [ellipticity(x) for x in dAB_z if x !=0]
+dev_e_g = [ellipticity(x) for x in dAB_g]
+dev_e_r = [ellipticity(x) for x in dAB_r]
+dev_e_z = [ellipticity(x) for x in dAB_z]
 
-exp_e_g = [ellipticity(x) for x in eAB_g if x !=0]
-exp_e_r = [ellipticity(x) for x in eAB_r if x !=0]
-exp_e_z = [ellipticity(x) for x in eAB_z if x !=0]
+exp_e_g = [ellipticity(x) for x in eAB_g]
+exp_e_r = [ellipticity(x) for x in eAB_r]
+exp_e_z = [ellipticity(x) for x in eAB_z]
 
 
 
@@ -109,11 +109,13 @@ def magnitude(f): # nanomaggies to magnitudes
       m = 22.5 - 2.5*math.log10(f)
    return m
 
-aMask = [sum(x) for x in Mask_d]
+aMask = [sum(x) for x in Mask_d] # sum of all masking values per filter
 
+# Ensuring that radius only describes specific types of objects based on method
 rE_1 = [word for (word, mask1, mask2) in zip(rE_d, type1_d, aMask) if (mask1 == 'EXP' or mask1 == 'COMP') and  mask2 == 0]
 rD_1 = [word for (word, mask1, mask2) in zip(rD_d, type1_d, aMask) if (mask1 == 'DEV'or mask1 == 'COMP') and  mask2 == 0]
 
+# Fluxes to Magnitudes
 g_d = fD_d[:,1]
 gMAG = [magnitude(f) for f in g_d]
 gMAG_1 = [x for (x, mask) in zip(gMAG, aMask) if mask == 0]
@@ -126,6 +128,7 @@ z_d = fD_d[:,4]
 zMAG = [magnitude(f) for f in z_d]
 zMAG_1 = [x for (x, mask) in zip(zMAG, aMask) if mask == 0]
 
+# Ensuring ellipticity is only describing specific types of objects based on method
 eE1_1 = [word for (word, mask1, mask2) in zip(eE1_d, type1_d, aMask) if (mask1 == 'EXP'or mask1 == 'COMP')and  mask2 == 0]
 eE2_1 = [word for (word, mask1, mask2) in zip(eE2_d, type1_d, aMask) if (mask1 == 'EXP'or mask1 == 'COMP')and  mask2 == 0]
 eD1_1 = [word for (word, mask1, mask2) in zip(eD1_d, type1_d, aMask) if (mask1 == 'DEV'or mask1 == 'COMP')and  mask2 == 0]
