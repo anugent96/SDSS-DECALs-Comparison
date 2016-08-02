@@ -27,7 +27,7 @@ rD_z = df.values[:,7]
 rE_g = df.values[:,8]
 rE_r = df.values[:,9]
 rE_z = df.values[:,10]
-#Ellipticity (b/a- semi-major, semi-minor axis) based on filter and type (DEV, EXP)
+#Ellipticity (b/a- semi-minor/semi-major axis) based on filter and type (DEV, EXP)
 deVAB_g = df.values[:,11]
 deVAB_r = df.values[:,12]
 deVAB_z = df.values[:,13]
