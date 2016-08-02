@@ -1,3 +1,7 @@
+"""
+Finds differences in ellipticity between SDSS and DECaLS and prints the average difference and the average SDSS error.
+"""
+
 import sys
 image1 = str(sys.argv[1]) # SDSS csv file
 image2 = str(sys.argv[2])
